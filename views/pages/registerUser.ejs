@@ -1,0 +1,39 @@
+<!doctype html>
+
+<html lang="en">
+	<% include ../partials/head.ejs %>
+	<title>registerUSer.ejs</title>
+	<body>
+		<% include ../partials/header.ejs %>
+		<div id="content">
+			<div class="container">
+				<div class="row">
+					<form method="POST">
+						<div class="form-group">
+							<label for="username" class="control-label col-sm-2">Username</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="username" name="username" value="<%= user.username %>"" placeholder="Username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="control-label col-sm-2">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="password" name="password" value="<%= user.password %>" placeholder="Password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="name" class="control-label col-sm-2">Name</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" placeholder="Name">
+							</div>
+						</div>
+						<input type="submit" class="btn btn-default" id="create" value="Create user" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<% include ../partials/footer %>
+		</footer>
+	</body>
+</html>

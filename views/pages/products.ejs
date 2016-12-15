@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Products.ejs</title>
+		<!-- Told by app.use() that the path to the bootstrap folder is, entry '/' -->
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap/css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<% include ../partials/header.ejs %>
+		<div id="content">
+			<div class="container">
+				<div class="row">
+					<% products.forEach(function(product) { %>
+						<div class="col-xs-6">
+						<h1><%= product.name %></h1>
+						<p><%= product.price %></p>
+						</div>
+					<% }); %>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<% include ../partials/footer %>
+		</footer>
+	</body>
+</html>

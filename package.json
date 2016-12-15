@@ -1,0 +1,32 @@
+{
+  "name": "nodejsexamen",
+  "version": "1.0.0",
+  "description": "NodeJs Store Project for the NodeJS hand-in",
+  "main": "StoreServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TroelsHelboJensen/NodeJSExamen.git"
+  },
+  "keywords": [
+    "Examen",
+    "NodeJS",
+    "MongonDB"
+  ],
+  "author": "Troels Helbo Jensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TroelsHelboJensen/NodeJSExamen/issues"
+  },
+  "homepage": "https://github.com/TroelsHelboJensen/NodeJSExamen#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "grunt-cli": "^1.2.0",
+    "mongodb": "^2.2.16",
+    "mongoose": "^4.7.2"
+  }
+}
