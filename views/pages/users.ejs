@@ -1,8 +1,10 @@
 <!doctype html>
 
 <html lang="en">
-	<% include ../partials/head.ejs %>
-	<title>Users.ejs</title>
+	<head>
+		<title>Users.ejs</title>
+		<% include ../partials/head.ejs %>
+	</head>
 	<body>
 		<% include ../partials/header.ejs %>
 		<div id="content">
@@ -13,7 +15,6 @@
 					var index = 1;
 					users.forEach(function(user) { %>
 						<% 
-						console.log(user);
 						if(index % 4 == 0) { %>
 							<div class="row">
 						<% } %>
@@ -25,14 +26,12 @@
 						<% if (index % 3 == 0) { %>
 							</div>
 						<%}
-						console.log(index);
 						index++;
 					    }); %>
 				</div>
 			</div>
 		</div>
-		<footer>
-			<% include ../partials/footer %>
-		</footer>
+		<% include ../partials/footer %>
+		
 	</body>
 </html>

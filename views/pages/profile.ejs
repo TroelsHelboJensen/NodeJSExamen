@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<% include ../partials/head.ejs %>
+		<title>Profiles</title>
+	</head>
+	<body>
+		
+		<% include ../partials/header.ejs %>
+		<div id="content">
+			<div class="container">
+				<form method="POST">
+					<div class="row">
+						<!-- Left side -->
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Username</label>
+								<input type="text" value="<%= user.username %>" name="username">
+							</div>
+							<div class="form-group">
+								<label>Password</label>
+								<input type="text" value="<%= user.password %>" name="password">
+							</div>
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" value="<%= user.name %>" name="name">
+							</div>
+							<div class="form-group">
+								<input type="hidden" value="<%= user._id %>" name="_id">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+							<input type="submit" class="btn btn-default" id="update" value="Save Profile">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>

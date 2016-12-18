@@ -1,0 +1,37 @@
+/* Login Form from login.ejs */
+.center-form {
+	width: 450px; 
+	margin: auto;
+}
+
+.div-group-form-margin {
+	margin-bottom: 2px;
+}
+
+.label-user-fixedsize {
+	width: 200px;
+}
+
+.label-text-align {
+	text-align: right;
+}
+
+.label-form-margin {
+	margin-right: 2px;
+}
+
+.admin-header {
+	border-left: 1px solid blue;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+}
+
+.testBorder {
+	border: 1px solid black;
+}

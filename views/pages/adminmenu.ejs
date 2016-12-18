@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<% include ../partials/head.ejs %>
+		<title>index.ejs</title>
+	</head>
+	<body>
+		<% include ../partials/header.ejs %>
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navber-header">
+					<a class="navbar-brand" href="" role="button" onclick="loadContent('products')">Product Menu</a>
+				</div>
+				<ul class="nav navbar-nav admin-header">
+					<li><a href="" role="button" onclick="loadContent('createProduct')">Create</a></li>
+				</ul>
+			</nav>
+		
+		
+			<div id="list">
+
+			</div>
+		</div>
+		<% include ../partials/footer %>
+	</body>
+</html>

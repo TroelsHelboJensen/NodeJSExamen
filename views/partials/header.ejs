@@ -1,29 +1,65 @@
 <!DOCTYPE html>
+<% 
+  var user1 = {
+    username: "",
+    password: "",
+    name: ""
+  }
+  
+  if(typeof user == 'undefined') {
+    user = user1;
+    console.log("Using user1");
+  }
+%>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">ExamenProject</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/products">Products</a></li>
       <li><a href="/users">Users</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-    <ul class="nav navbar-right navbar-nav">
-        <li>
-          You are Logged in as <% if(typeof user != 'undefined') { user.username }%>
-        </li>
+      <% if(user.username != "") { %>  
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
 
-        <li>
-          <% if(typeof user == 'undefined') { %>
-            <a id="loginLink" href="/login">Login</a>
-          <% } %>
-          <% if(typeof user != 'undefined') { %>
-            <a href="/profile"><b><%= user.username %></b></a>
-          <% } %>
-
-        </li>
+        <ul class="dropdown-menu">
+          <li><a href="/profile">Profile</a></li>
+          <li role="separater" class="divider"></li>
+          <li><a href="/orders/user">Orders</a></li>
+        </ul>
+      </li>
+      <% if(user.role == 'admin') { %>
+            <li><a href="/admin/menu">Admin</a></li>
+      <% } %>
+      <% } %>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if(user.username != "") { %>
+        <li><a href="/logout" class="navbar-link">Logout</a></li>
+      <% } %>
+      <% if(user.username == "") { %>
+        <li><a href="/login" class="navbar-link">Login</a></li>
+      <% } %>
+    </ul>
+
+    <div class="navbar-header navbar-right">
+      <% if(typeof user != 'undefined') { %>
+        <p class="navbar-text label-form-margin label-user-fixedsize label-text-align"><a href="/profile"><b><%= user.username %></b></a></p>
+      <% } %>
+    </div>
+
+    <!-- Basket View To the Header Nav -->
+    <a href="/user/orders">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">Basket</li>
+        <li class="navbar-text">items: <%= user.basket.items %></li>
+        <li class="navbar-text">total: <%= user.basket.total %></li>
+      </ul>
+    </a>
+
   </div>
 </nav>

@@ -1,14 +1,15 @@
 // Getting relevant libraries to do the task
 var express = require('express');
+/*var session = require('express-session');*/
 var app = express();
 var mongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/ExamenNodeJS';
+var sessionHelper = require('../model/session.js')
 
 /* GET */
 /* index of users in the database */
 app.get('/users', function(req, res) {
-	cleanup();
 	mongoClient.connect(url, function(err, db) {
 		var collection = db.collection('Users');
 
@@ -16,7 +17,8 @@ app.get('/users', function(req, res) {
 		collection.find({}).toArray(function(err, data) {
 			var users = data;
 			res.render('pages/users', {
-				users: users
+				users: users,
+				user: req.session.user
 			});
 			db.close();
 		});
@@ -36,90 +38,19 @@ function cleanup() {
 	});
 }
 
-/* register post of a new user */
 /* GET */
-// Create GET
-app.get('/register', function(req, res) {
-	res.render('pages/registerUser');
-});
-
-
-/* POST */
-// Create POST
-app.post('/register', function(req, res) {
-	//console.log(req);
-	//console.log(res);
-	
-	var username = req.body.username;
-	var password = req.body.password;
-	var role = "member";
-	var name = req.body.name;
-
-	var newuser = {
-		name: name,
-		username: username,
-		password: password,
-		role: role
-	};
-
+// admin View
+app.get('/admin/menu', function(req, res) {
 	mongoClient.connect(url, function(err, db) {
-		var collection = db.collection('Users');
-		collection.insert(newuser, function(err, dataObj) {
-			collection.find({}).toArray(function(err, data) {
-				res.render('pages/users', {
-				users: data
-				});
-				db.close();
-			});
+		var collection = db.collection('Products');
+		collection.find({}).toArray(function(err, products) {
+			res.render('pages/adminmenu', {
+			user: req.session.user,
+			products: products
+			});		
+			db.close();
 		});
 	});
 });
 
-/* GET */
-// Get view of the update or edit user function by id
-app.get('/edit/:id', function(req, res) {
-	mongoClient.connect(url, function(err, db) {
-		var collection = db.collection('Users');
-		collection.findOne({ '_id': ObjectId(req.params.id) }, function(err, data) {
-			console.log(data);
-			res.render('pages/registerUser', {
-				user: data
-			});
-			db.close();
-		});			
-			
-	});
-});
-
-
-/* GET */
-// Login view
-app.get('/login', function(req, res) {
-	res.render('pages/login');
-});
-
-/* POST */
-// Login view
-app.post('/login', function(req, res) {
-	mongoClient.connect(url, function(err, db) {
-		var collection = db.collection('Users');
-		collection.findOne({ 'username': req.body.username, 'password': req.body.password}, function(err, user) {
-			if(err) {
-				console.log(err);
-				return res.statu(500).send();
-			}
-
-			if(!user) {
-				console.log("No user" + user);
-				return res.statu(404).send();
-			}
-			
-			res.render('pages/index', {
-				user: user,
-				profileName: user.username
-			});
-			db.close();
-		})
-	});
-});
 module.exports = app;
